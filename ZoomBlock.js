@@ -113,13 +113,12 @@
     setZoomSettings (tabId, zoomSetting, callback) {
       this.browser.tabs.setZoomSettings(
         tabId,
-        this.zoomConstructor(zoomSetting),
-        () => {
-          const error = !!this.browser.runtime.lastError
-          this.setPopup(tabId, error)
-          callback(error)
-        }
-      )
+        this.zoomConstructor(zoomSetting)
+      ).then(() => {
+        const error = !!this.browser.runtime.lastError
+        this.setPopup(tabId, error)
+        callback(error)
+      })
     }
 
     iconClick (Tab) {
