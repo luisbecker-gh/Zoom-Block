@@ -49,7 +49,7 @@
     }
 
     addListeners () {
-      this.browser.browserAction.onClicked.addListener(Tab =>
+      this.browser.action.onClicked.addListener(Tab =>
         this.iconClick(Tab)
       )
       this.browser.runtime.onInstalled.addListener(() => this.init())
@@ -75,7 +75,7 @@
     }
 
     setPopup (tabId, error) {
-      this.browser.browserAction.setPopup({
+      this.browser.action.setPopup({
         tabId, popup: error ? this.popup : ''
       })
     }
@@ -100,7 +100,7 @@
     }
 
     updateIcon (tabId, enabled) {
-      this.browser.browserAction.setIcon({
+      this.browser.action.setIcon({
         path: this.images.get(
           enabled === false ? 'red'
             : enabled === true ? 'green'
@@ -147,4 +147,4 @@
   }
 
   new ZoomBlock(api).addListeners()
-})(window.chrome)
+})(chrome)
